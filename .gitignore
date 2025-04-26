@@ -1,0 +1,12 @@
+# Ignorar pastas geradas
+/target/
+/.idea/
+/.vscode/
+/*.iml
+
+# Ignorar arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos Maven
+.mvn/
