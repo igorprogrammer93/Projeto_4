@@ -36,3 +36,57 @@ Este projeto é uma aplicação Java que simula um sistema simples de vendas, us
 
 ```bash
 docker-compose up -d
+
+2️⃣ Compilar o projeto
+
+mvn clean install
+
+3️⃣ Executar o projeto
+
+mvn exec:java
+
+(O projeto foi configurado para rodar automaticamente com a classe Main.)
+
+📚 Estrutura do projeto
+
+src/
+├── main/
+│   ├── java/
+│   │   ├── main/java/app/        # Classe Main
+│   │   ├── main/java/dao/         # DAOs de Cliente, Produto e Venda
+│   │   ├── main/java/model/       # Entidades JPA
+│   │   └── main/java/database/    # Classe JPAUtil para conexão
+│   └── resources/
+│       └── META-INF/persistence.xml  # Configuração JPA
+docker-compose.yml
+pom.xml
+README.md
+
+
+📄 Banco de Dados
+
+    Banco: vendasdb
+
+    Usuário: postgres
+
+    Senha: postgres
+
+As tabelas são criadas automaticamente pelo Hibernate:
+
+    cliente
+
+    produto
+
+    venda
+
+✍️ Autor
+
+Feito com 💻 por Igor Programmer
+
+
+📝 Licença
+
+Este projeto é de livre uso para fins de estudo e aprendizado. 🚀
+
+
+
