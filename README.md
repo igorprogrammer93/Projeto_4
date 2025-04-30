@@ -1,69 +1,90 @@
-# 📦 Projeto 4 - Sistema de Vendas
+# 🧾 Projeto 4 - Sistema de Vendas com PostgreSQL e MongoDB
 
-Este projeto é uma aplicação Java que simula um sistema simples de vendas, usando:
-- Java 17
-- JPA (Hibernate)
-- PostgreSQL
-- Maven
-- Docker + Docker Compose
-- PgAdmin4
+Este projeto Java simula um sistema de vendas com persistência em banco de dados relacional (PostgreSQL) e também armazena logs de vendas em banco documental (MongoDB).
 
-## 🚀 Funcionalidades
+## 🚀 Tecnologias Utilizadas
 
-- Cadastro de clientes
-- Cadastro de produtos
-- Cadastro de vendas (relacionando cliente e produto)
-- Listagem de clientes, produtos e vendas
-- Integração com banco de dados PostgreSQL
-- Geração automática das tabelas via JPA Hibernate (`hibernate.hbm2ddl.auto=update`)
+- ✅ Java 17
+- ✅ Maven
+- ✅ Hibernate (JPA)
+- ✅ PostgreSQL (via JPA)
+- ✅ MongoDB (para logs)
+- ✅ Docker e Docker Compose
+- ✅ PgAdmin4
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 📦 Funcionalidades
 
-- **Java 17**
-- **Maven** (gerenciador de dependências)
-- **Hibernate JPA** (ORM)
-- **PostgreSQL** (banco de dados relacional)
-- **Docker** (infraestrutura local do banco)
-- **PgAdmin4** (gerenciador visual do banco)
+- Cadastro de **clientes**, **produtos** e **vendas** (relacional com PostgreSQL)
+- Armazenamento de **logs de vendas** (documental com MongoDB)
+- Execução de aplicação via Maven (`exec-maven-plugin`)
+- Banco de dados rodando via Docker
+- Interface visual com PgAdmin
 
 ---
 
-## 🛠️ Como rodar o projeto localmente
+## 🛠️ Como Rodar o Projeto
 
-### 1️⃣ Subir o Banco de Dados e PgAdmin
+### 1️⃣ Subir o ambiente com Docker
 
 ```bash
 docker-compose up -d
 
-2️⃣ Compilar o projeto
+
+PostgreSQL: localhost:5432
+
+MongoDB: localhost:27017
+
+PgAdmin4: http://localhost:5050
+
+    Login: admin@admin.com
+
+    Senha: admin
+
+2️⃣ Compilar o projeto com Maven
 
 mvn clean install
 
-3️⃣ Executar o projeto
+3️⃣ Executar a aplicação
 
 mvn exec:java
 
-(O projeto foi configurado para rodar automaticamente com a classe Main.)
+A saída esperada:
 
-📚 Estrutura do projeto
+Log de venda enviado para o MongoDB com sucesso!
+
+🗃️ Estrutura do Projeto
 
 src/
 ├── main/
 │   ├── java/
-│   │   ├── main/java/app/        # Classe Main
-│   │   ├── main/java/dao/         # DAOs de Cliente, Produto e Venda
-│   │   ├── main/java/model/       # Entidades JPA
-│   │   └── main/java/database/    # Classe JPAUtil para conexão
+│   │   ├── app/                # Classe Main.java
+│   │   ├── dao/                # DAOs PostgreSQL + LogVendaDAO (Mongo)
+│   │   ├── model/              # Entidades JPA
+│   │   └── database/           # Conexão com JPA + Mongo
 │   └── resources/
-│       └── META-INF/persistence.xml  # Configuração JPA
+│       └── META-INF/
+│           └── persistence.xml # Configuração JPA
 docker-compose.yml
 pom.xml
 README.md
 
+🧪 Testando o MongoDB
+
+Você pode usar:
+➤ MongoDB Compass
+
+Conectar em: mongodb://localhost:27017
+➤ Linha de comando (se tiver mongosh)
+
+mongosh
+use vendasdb_mongo
+db.log_vendas.find().pretty()
 
 📄 Banco de Dados
+
+PostgreSQL:
 
     Banco: vendasdb
 
@@ -71,22 +92,12 @@ README.md
 
     Senha: postgres
 
-As tabelas são criadas automaticamente pelo Hibernate:
+MongoDB:
 
-    cliente
+    Banco: vendasdb_mongo
 
-    produto
-
-    venda
+    Coleção: log_vendas
 
 ✍️ Autor
 
 Feito com 💻 por Igor Programmer
-
-
-📝 Licença
-
-Este projeto é de livre uso para fins de estudo e aprendizado. 🚀
-
-
-
